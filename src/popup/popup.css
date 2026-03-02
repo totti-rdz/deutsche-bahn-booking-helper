@@ -1,0 +1,38 @@
+body {
+  width: 300px;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #1a1a1a;
+}
+
+.container {
+  padding: 16px;
+}
+
+h1 {
+  font-size: 16px;
+  margin: 0 0 8px;
+  color: #ec0016; /* DB red */
+}
+
+p {
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+.hint {
+  margin-top: 12px;
+  color: #666;
+  font-size: 12px;
+}
+
+a {
+  color: #ec0016;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
