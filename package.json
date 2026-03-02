@@ -5,8 +5,26 @@
   "description": "Browser extension that enhances the Deutsche Bahn trip booking experience with filters like max duration.",
   "private": true,
   "scripts": {
-    "build": "echo 'No build step yet'",
-    "lint": "echo 'No linter configured yet'"
+    "dev": "wxt",
+    "dev:firefox": "wxt --browser firefox",
+    "build": "wxt build && wxt build --browser firefox",
+    "build:chrome": "wxt build",
+    "build:firefox": "wxt build --browser firefox",
+    "zip": "wxt zip && wxt zip --browser firefox",
+    "zip:chrome": "wxt zip",
+    "zip:firefox": "wxt zip --browser firefox",
+    "postinstall": "wxt prepare"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@wxt-dev/module-react": "^1.1.0",
+    "typescript": "^5.7.0",
+    "wxt": "^0.19.0"
   },
   "license": "MIT"
 }
