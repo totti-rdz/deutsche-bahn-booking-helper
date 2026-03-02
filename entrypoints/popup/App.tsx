@@ -1,7 +1,7 @@
 export default function App() {
   return (
     <div className="container">
-      <h1>🚂 DB Booking Helper</h1>
+      <h1 className="text-red-800 text-3xl underline font-bold">🚂 DB Booking Helper</h1>
       <p>Hello World! The extension is running.</p>
       <p className="hint">
         Visit{" "}
