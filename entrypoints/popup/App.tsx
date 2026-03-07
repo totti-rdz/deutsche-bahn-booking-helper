@@ -1,15 +1,21 @@
+import ConnectionList from "./components/ConnectionList";
+import EmptyState from "./components/EmptyState";
+import { useSavedConnections } from "./hooks/useSavedConnections";
+
 export default function App() {
+  const { connections, loading, remove } = useSavedConnections();
+
   return (
     <div className="container">
-      <h1 className="text-red-800 text-3xl underline font-bold">🚂 DB Booking Helper</h1>
-      <p>Hello World! The extension is running.</p>
-      <p className="hint">
-        Visit{" "}
-        <a href="https://www.bahn.de" target="_blank" rel="noreferrer">
-          bahn.de
-        </a>{" "}
-        to see it in action.
-      </p>
+      <h1>🚂 DB Booking Helper</h1>
+
+      {loading ? (
+        <p className="hint">Laden…</p>
+      ) : connections.length === 0 ? (
+        <EmptyState />
+      ) : (
+        <ConnectionList connections={connections} onRemove={remove} />
+      )}
     </div>
   );
 }

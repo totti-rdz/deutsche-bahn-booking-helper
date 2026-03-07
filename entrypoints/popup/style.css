@@ -38,3 +38,77 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
+/* Saved connections list */
+.conn-list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.conn-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  background: #f7f7f7;
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  transition: background 0.15s;
+}
+
+.conn-item:hover {
+  background: #efefef;
+}
+
+.conn-link {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-decoration: none;
+  color: inherit;
+  min-width: 0;
+}
+
+.conn-link:hover {
+  text-decoration: none;
+}
+
+.conn-route {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1a1a1a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.conn-date {
+  font-size: 11px;
+  color: #888;
+}
+
+.conn-remove {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  color: #999;
+  font-size: 13px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s;
+}
+
+.conn-remove:hover {
+  background: #e0e0e0;
+  color: #c0392b;
+}
