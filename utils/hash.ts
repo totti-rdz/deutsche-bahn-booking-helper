@@ -5,16 +5,15 @@
  */
 export function hashId(raw: string): string {
   let h = 0x811c9dc5; // FNV offset basis (32-bit)
-  for (let i = 0; i < raw.length; i++) {
-    h ^= raw.charCodeAt(i);
-    h = Math.imul(h, 0x01000193); // FNV prime
-  }
-  // produce 16 hex chars by hashing twice with different seeds
   let h2 = 0x41c6ce57;
   for (let i = 0; i < raw.length; i++) {
-    h2 ^= raw.charCodeAt(i);
+    const code = raw.charCodeAt(i);
+    h ^= code;
+    h = Math.imul(h, 0x01000193); // FNV prime
+    h2 ^= code;
     h2 = Math.imul(h2, 0x01000193);
   }
+  // produce 16 hex chars by hashing twice with different seeds
   return (((h >>> 0).toString(16)).padStart(8, '0')
     + ((h2 >>> 0).toString(16)).padStart(8, '0'));
 }
