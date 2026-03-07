@@ -38,7 +38,7 @@ export async function injectMerkenButton(
     const route = parseRouteFromPage();
     if (!route.from || !route.to) return;
 
-    const connId = await getConnectionId(route.from, route.to);
+    const connId = getConnectionId(route.from, route.to);
     const saved = await isConnectionSaved(connId);
 
     // Container
@@ -100,7 +100,7 @@ export async function injectMerkenButton(
 
     btn.addEventListener('click', async () => {
       const currentRoute = parseRouteFromPage();
-      const currentId = await getConnectionId(
+      const currentId = getConnectionId(
         currentRoute.from,
         currentRoute.to,
       );
@@ -133,7 +133,7 @@ export async function injectMerkenButton(
     // Sync button state across tabs
     onConnectionChanged(async (changedId, changedSaved) => {
       const currentRoute = parseRouteFromPage();
-      const currentId = await getConnectionId(
+      const currentId = getConnectionId(
         currentRoute.from,
         currentRoute.to,
       );
