@@ -1,5 +1,6 @@
 import { injectMerkenButton } from '@/components/MerkenButton';
 import { injectSavedPanel } from '@/components/SavedPanel';
+import { injectDismissButtons } from '@/components/DismissButton';
 
 export default defineContentScript({
   matches: ['https://www.bahn.de/*'],
@@ -12,6 +13,7 @@ export default defineContentScript({
     const observer = new MutationObserver(() => {
       injectMerkenButton(extensionIconUrl);
       injectSavedPanel(extensionIconUrl);
+      injectDismissButtons(extensionIconUrl);
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
@@ -19,5 +21,6 @@ export default defineContentScript({
     // Also try immediately in case elements are already present
     injectMerkenButton(extensionIconUrl);
     injectSavedPanel(extensionIconUrl);
+    injectDismissButtons(extensionIconUrl);
   },
 });
