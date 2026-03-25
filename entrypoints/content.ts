@@ -9,11 +9,15 @@ export default defineContentScript({
 
     const extensionIconUrl = browser.runtime.getURL('/icon-48.png');
 
-    // The page is an SPA — observe DOM changes to catch when elements appear
+    // The page is an SPA — observe DOM changes to catch when elements appear.
+    let debounceTimer: ReturnType<typeof setTimeout> | undefined;
     const observer = new MutationObserver(() => {
-      injectMerkenButton(extensionIconUrl);
-      injectSavedPanel(extensionIconUrl);
-      injectDismissButtons(extensionIconUrl);
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        injectMerkenButton(extensionIconUrl);
+        injectSavedPanel(extensionIconUrl);
+        injectDismissButtons(extensionIconUrl);
+      }, 150);
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
