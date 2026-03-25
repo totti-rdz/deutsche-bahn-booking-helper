@@ -2,6 +2,7 @@ import { injectMerkenButton } from '@/components/MerkenButton';
 import { injectSavedPanel } from '@/components/SavedPanel';
 import { injectDismissButtons } from '@/components/DismissButton';
 import { setupSampleConnections } from '@/utils/setupSampleConnections';
+import { MERKEN_CONTAINER_ID } from '@/lib/constants';
 
 export default defineContentScript({
   matches: ['https://www.bahn.de/*'],
@@ -26,6 +27,13 @@ export default defineContentScript({
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
+
+    // When the route changes via "Ändern", the URL hash updates but the DOM container
+    // persists. Remove it so injectMerkenButton re-injects with the correct state.
+    window.addEventListener('hashchange', () => {
+      document.getElementById(MERKEN_CONTAINER_ID)?.remove();
+      injectMerkenButton(extensionIconUrl);
+    });
 
     // Also try immediately in case elements are already present
     injectMerkenButton(extensionIconUrl);
