@@ -87,11 +87,6 @@ a:hover {
   text-overflow: ellipsis;
 }
 
-.conn-date {
-  font-size: 11px;
-  color: #888;
-}
-
 .conn-remove {
   flex-shrink: 0;
   width: 22px;
