@@ -1,11 +1,16 @@
 import { injectMerkenButton } from '@/components/MerkenButton';
 import { injectSavedPanel } from '@/components/SavedPanel';
 import { injectDismissButtons } from '@/components/DismissButton';
+import { setupSampleConnections } from '@/utils/setupSampleConnections';
 
 export default defineContentScript({
   matches: ['https://www.bahn.de/*'],
-  main() {
+  async main() {
     console.log('🚂 Deutsche Bahn Booking Helper is active on this page.');
+
+    if (import.meta.env.DEV) {
+      await setupSampleConnections();
+    }
 
     const extensionIconUrl = browser.runtime.getURL('/icon-48.png');
 
