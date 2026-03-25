@@ -21,6 +21,12 @@ function updateButtonState(btn: HTMLButtonElement, saved: boolean): void {
 let injecting = false;
 
 /**
+ * Holds the unsubscribe function for the active storage-change listener so it
+ * can be cleaned up before a new one is registered on SPA re-navigation.
+ */
+let unsubscribeStorageListener: (() => void) | undefined;
+
+/**
  * Inject the "Verbindung merken" button below the search-results summary bar.
  */
 export async function injectMerkenButton(
@@ -130,8 +136,10 @@ export async function injectMerkenButton(
     if (document.getElementById(MERKEN_CONTAINER_ID)) return;
     bar.insertAdjacentElement('afterend', container);
 
-    // Sync button state across tabs
-    onConnectionChanged(async (changedId, changedSaved) => {
+    // Sync button state across tabs.
+    // Remove the previous listener first to avoid accumulating listeners on SPA re-navigation.
+    unsubscribeStorageListener?.();
+    unsubscribeStorageListener = onConnectionChanged(async (changedId, changedSaved) => {
       const currentRoute = parseRouteFromPage();
       const currentId = getConnectionId(
         currentRoute.from,
