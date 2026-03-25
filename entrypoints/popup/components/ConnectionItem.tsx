@@ -2,7 +2,6 @@ interface Props {
   from: string;
   to: string;
   url: string;
-  savedAt: string;
   onRemove: () => void;
 }
 
@@ -10,7 +9,6 @@ export default function ConnectionItem({
   from,
   to,
   url,
-  savedAt,
   onRemove,
 }: Props) {
   return (
@@ -20,7 +18,7 @@ export default function ConnectionItem({
         target="_blank"
         rel="noreferrer"
         className="conn-link"
-        title={`Gespeichert am ${new Date(savedAt).toLocaleString("de-DE")}`}
+        title={`Von ${from} nach ${to}`}
       >
         <span className="conn-route">
           {from} → {to}

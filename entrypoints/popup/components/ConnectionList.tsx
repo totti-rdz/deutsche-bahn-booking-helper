@@ -15,7 +15,6 @@ export default function ConnectionList({ connections, onRemove }: Props) {
           from={conn.from}
           to={conn.to}
           url={conn.url}
-          savedAt={conn.savedAt}
           onRemove={() => onRemove(conn.id)}
         />
       ))}
