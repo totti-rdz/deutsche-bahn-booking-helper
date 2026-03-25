@@ -16,3 +16,9 @@ export const QUICKFINDER_ID = 'db-web-quickfinder-app';
 /** Shared font stack matching bahn.de's UI. */
 export const FONT_STACK =
   '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+
+/** CSS selector for individual search result items. */
+export const RESULT_ITEM_SELECTOR = 'li.verbindung-list__result-item';
+
+/** Data attribute marking a result item as having a dismiss button. */
+export const DISMISS_ATTR = 'data-dbhelper-dismiss';
