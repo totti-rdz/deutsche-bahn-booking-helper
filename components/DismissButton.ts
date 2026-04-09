@@ -1,5 +1,6 @@
 import { RESULT_ITEM_SELECTOR, DISMISS_ATTR, FONT_STACK } from '@/lib/constants';
 import { showToast } from '@/components/Toast';
+import { starSvg } from '@/utils/dom';
 
 /**
  * Session-scoped set of dismissed connection fingerprints.
@@ -89,6 +90,40 @@ export function injectDismissButtons(extensionIconUrl: string): void {
       flexShrink: '0',
     });
 
+    // Favorite button
+    const favBtn = document.createElement('button');
+    favBtn.title = 'Verbindung favorisieren';
+    favBtn.innerHTML = starSvg(false);
+    Object.assign(favBtn.style, {
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '4px',
+      backgroundColor: 'transparent',
+      color: '#888',
+      border: '1px solid transparent',
+      borderRadius: '4px',
+      cursor: 'pointer',
+      transition: 'all 0.15s ease',
+      lineHeight: '0',
+    });
+
+    let starred = false;
+
+    favBtn.addEventListener('mouseenter', () => {
+      favBtn.style.backgroundColor = '#fdf3d0';
+      favBtn.style.borderColor = '#e8d48a';
+    });
+    favBtn.addEventListener('mouseleave', () => {
+      favBtn.style.backgroundColor = 'transparent';
+      favBtn.style.borderColor = 'transparent';
+    });
+    favBtn.addEventListener('click', () => {
+      starred = !starred;
+      favBtn.innerHTML = starSvg(starred);
+      favBtn.title = starred ? 'Favorit entfernen' : 'Verbindung favorisieren';
+    });
+
     // Trash button
     const btn = document.createElement('button');
     btn.title = 'Verbindung ausblenden';
@@ -155,6 +190,7 @@ export function injectDismissButtons(extensionIconUrl: string): void {
     });
 
     container.appendChild(icon);
+    container.appendChild(favBtn);
     container.appendChild(btn);
 
     // Append inside .reiseloesung so there's no gap from the card's margin
